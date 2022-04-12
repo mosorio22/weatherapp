@@ -10,8 +10,10 @@ export default {
    name: 'App',
    data() {
       return {
-         api_key: "",
-         url: "https://api.openweathermap.org/data/2.5/",
+         url: "https://api.openweathermap.org/data/2.5/weather?",
+         lat: "",
+         long: "",
+         api_key: ""
       };
    }
 }
