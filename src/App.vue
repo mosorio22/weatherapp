@@ -11,7 +11,7 @@ export default {
    data() {
       return {
          api_key: "",
-         url_: "https://api.openweathermap.org/data/2.5/",
+         url: "https://api.openweathermap.org/data/2.5/",
       };
    }
 }
