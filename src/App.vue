@@ -2,19 +2,30 @@
    <header id="weather-header">
       <h1>Your Weather App</h1>
    </header>
+   <div>
+      {{  weatherData  }}
+   </div>
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
    name: 'App',
    data() {
       return {
+         weatherData: null,
          url: "https://api.openweathermap.org/data/2.5/weather?",
-         lat: "",
-         long: "",
-         api_key: ""
+         lat: "40",
+         long: "-74",
+         appid: ""
       };
+   },
+   //get weather api data on mounted
+   mounted() {
+      axios
+         .get(this.url + "lat=" + this.lat + "&lon=" + this.long + "&appid=" + this.appid)
+         .then(response => (this.weatherData = response))
    }
 }
 </script>
