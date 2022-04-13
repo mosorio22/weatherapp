@@ -10,22 +10,35 @@
 <script>
 import axios from 'axios'
 
+
 export default {
    name: 'App',
    data() {
       return {
          weatherData: null,
          url: "https://api.openweathermap.org/data/2.5/weather?",
-         lat: "40",
-         long: "-74",
-         appid: ""
+         appid: "",
       };
    },
-   //get weather api data on mounted
-   mounted() {
-      axios
-         .get(this.url + "lat=" + this.lat + "&lon=" + this.long + "&appid=" + this.appid)
-         .then(response => (this.weatherData = response))
+   computed: {
+      getLat: function() {
+         return navigator.geolocation.getCurrentPosition(function(position) {
+            return position.coords.latitude;
+         });
+      },
+      getLong: function() {
+         return navigator.geolocation.getCurrentPosition(function(position) {
+            return position.coords.longitude;
+         });
+      }
+   },
+   //get weather api data
+   methods: {
+      getWeatherData: function() {
+         axios
+            .get(this.url + "lat=" + this.getLat + "&lon=" + this.getLong + "&appid=" + this.appid)
+            .then(response => (this.weatherData = response))
+      }
    }
 }
 </script>
