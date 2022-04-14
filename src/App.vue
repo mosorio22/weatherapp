@@ -1,10 +1,12 @@
 <template>
-   <div id="main-wrapper" :class="temp > 85 ? 'summer' : temp > 65 ? 'spring' : temp > 35 ? 'fall' : 'winter'">
+   <div id="main-wrapper" :class="temp > 85 ? 'summer' : temp > 65 ? 'spring' : temp > 35 ? 'fall' : temp > -300 ? 'winter': ''">
       <header id="weather-header">
          <h1>Your Weather App</h1>
       </header>
-      <div>
-         {{  temp  }}
+      <div id="weather-data">
+         <strong class="temperature">
+            {{  temp  }}
+         </strong>
       </div>
    </div>
 </template>
@@ -31,7 +33,7 @@ export default {
       navigator.geolocation.getCurrentPosition(function(position) {
          axios
          .get(that.url + "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + that.appid)
-         .then(response => (that.temp = ((response.data.main.temp - 273.15) * 9/5 + 32).toFixed(1)))
+         .then(response => (that.temp = ((response.data.main.temp - 273.15) * 9/5 + 32 - 60).toFixed(1)))
       });
    }
 }
@@ -46,6 +48,7 @@ export default {
 	height: 100%;
 }
 #main-wrapper { 
+   background-image: url('');
    background-size: cover;
    &.summer {
       background: url(assets/summerbeach.jpg) no-repeat center center fixed;
@@ -78,6 +81,22 @@ export default {
       @media (min-width: 768px) {
          background-size:50%;
       }
+   }
+}
+
+#weather-header {
+	text-align: center;
+	padding-top: 2%;
+}
+
+#weather-data {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+   .temperature {
+      font-size: 5em;
    }
 }
 </style>
