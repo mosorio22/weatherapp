@@ -17,28 +17,20 @@ export default {
       return {
          weatherData: null,
          url: "https://api.openweathermap.org/data/2.5/weather?",
-         appid: "",
+         appid: ""
       };
    },
-   computed: {
-      getLat: function() {
-         return navigator.geolocation.getCurrentPosition(function(position) {
-            return position.coords.latitude;
-         });
-      },
-      getLong: function() {
-         return navigator.geolocation.getCurrentPosition(function(position) {
-            return position.coords.longitude;
-         });
-      }
-   },
    //get weather api data
-   methods: {
-      getWeatherData: function() {
+   mounted() {
+      //var to hold component data scope
+      let that = this;
+      //get lat and long and pass into weather api
+      navigator.geolocation.getCurrentPosition(function(position) {
+         console.log(that);
          axios
-            .get(this.url + "lat=" + this.getLat + "&lon=" + this.getLong + "&appid=" + this.appid)
-            .then(response => (this.weatherData = response))
-      }
+         .get(that.url + "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + that.appid)
+         .then(response => (that.weatherData = response))
+      });
    }
 }
 </script>
