@@ -1,9 +1,11 @@
 <template>
-   <header id="weather-header">
-      <h1>Your Weather App</h1>
-   </header>
-   <div>
-      {{  temp  }}
+   <div id="main-wrapper" :class="temp > 85 ? 'summer' : temp > 65 ? 'spring' : temp > 35 ? 'fall' : 'winter'">
+      <header id="weather-header">
+         <h1>Your Weather App</h1>
+      </header>
+      <div>
+         {{  temp  }}
+      </div>
    </div>
 </template>
 
@@ -36,12 +38,46 @@ export default {
 </script>
 
 <style lang="scss">
-html { 
-   background: url(assets/summerbeach.jpg) no-repeat center center fixed; 
+* {
+	margin: 0;
+}
+//for background image
+#app, body, html {
+	height: 100%;
+}
+#main-wrapper { 
    background-size: cover;
-   @media (min-width: 768px) {
-      background-size:50%;
-      background-color:seashell;
+   &.summer {
+      background: url(assets/summerbeach.jpg) no-repeat center center fixed;
+      background-size: cover;
+      height: 100%;
+      @media (min-width: 768px) {
+         background-size:50%;
+      }
+   }
+   &.spring {
+      background: url(assets/springflowers.jpg) no-repeat center center fixed;
+      background-size: cover;
+      height: 100%;
+      @media (min-width: 768px) {
+         background-size:50%;
+      }
+   }
+   &.fall {
+      background: url(assets/fallleaves.jpg) no-repeat center center fixed;
+      background-size: cover;
+      height: 100%;
+      @media (min-width: 768px) {
+         background-size:50%;
+      }
+   }
+   &.winter {
+      background: url(assets/wintersnow.jpg) no-repeat center center fixed;
+      background-size: cover;
+      height: 100%;
+      @media (min-width: 768px) {
+         background-size:50%;
+      }
    }
 }
 </style>
