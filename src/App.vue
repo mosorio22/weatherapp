@@ -26,10 +26,9 @@ export default {
       let that = this;
       //get lat and long and pass into weather api
       navigator.geolocation.getCurrentPosition(function(position) {
-         console.log(that);
          axios
          .get(that.url + "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + that.appid)
-         .then(response => (that.weatherData = response))
+         .then(response => (window.weatherData = response))
       });
    }
 }
