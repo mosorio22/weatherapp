@@ -1,11 +1,11 @@
 <template>
-   <div id="main-wrapper" :class="temp > 85 ? 'summer' : temp > 65 ? 'spring' : temp > 35 ? 'fall' : 'winter'">
+   <div id="main-wrapper" :class="getTemp > 85 ? 'summer' : getTemp > 65 ? 'spring' : getTemp > 35 ? 'fall' : 'winter'">
       <header id="weather-header">
          <h1>Your Weather App</h1>
       </header>
       <div id="weather-data">
          <strong class="temperature">
-            {{  temp  }}
+            {{  getTemp  }}&#176;
          </strong>
       </div>
    </div>
@@ -19,21 +19,31 @@ export default {
    name: 'App',
    data() {
       return {
-         temp: null,
+         weatherData: null,
          url: "https://api.openweathermap.org/data/2.5/weather?",
          appid: ""
       };
+   },
+   computed: {
+      //get temp in Farenheit (from Kelvin)
+      getTemp() {
+         if (this.weatherData !== null) {
+            return ((this.weatherData.data.main.temp - 273.15) * 9/5 + 32).toFixed(1);
+         }
+         else {
+            return "";
+         }
+      }
    },
    //get weather api data
    mounted() {
       //var to hold component data scope
       let that = this;
       //get lat and long and pass into weather api
-      //save data in Farenheit (from Kelvin)
       navigator.geolocation.getCurrentPosition(function(position) {
          axios
          .get(that.url + "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + that.appid)
-         .then(response => (that.temp = ((response.data.main.temp - 273.15) * 9/5 + 32).toFixed(1)))
+         .then(response => (that.weatherData = response))
       });
    }
 }
@@ -48,7 +58,6 @@ export default {
 	height: 100%;
 }
 #main-wrapper { 
-   background-image: url('');
    background-size: cover;
    &.summer {
       background: url(assets/summerbeach.jpg) no-repeat center center fixed;
