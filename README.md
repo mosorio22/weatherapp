@@ -1,4 +1,10 @@
 # weatherapp
+Basic weather app. Browser must know location.
+
+## Dependencies
+Vue
+Openweathermap API key - https://openweathermap.org/api
+API key can be placed as "appid" value in App.vue
 
 ## Project setup
 ```
