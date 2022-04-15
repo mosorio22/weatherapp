@@ -1,5 +1,5 @@
 <template>
-   <div id="main-wrapper" :class="getTemp > 85 ? 'summer' : getTemp > 65 ? 'spring' : getTemp > 35 ? 'fall' : 'winter'">
+   <div id="main-wrapper" :class="getTemp > 85 ? 'summer' : getTemp > 65 ? 'spring' : getTemp > 35 ? 'fall' : getTemp > - 300 ? 'winter' : 'noTemp'">
       <header id="weather-header">
          <h1>Your Weather App</h1>
       </header>
@@ -7,6 +7,9 @@
          <strong class="temperature">
             {{  getTemp  }}&#176;
          </strong>
+         <p class="location">
+            {{  getLocation  }}
+         </p>
       </div>
    </div>
 </template>
@@ -29,6 +32,15 @@ export default {
       getTemp() {
          if (this.weatherData !== null) {
             return ((this.weatherData.data.main.temp - 273.15) * 9/5 + 32).toFixed(1);
+         }
+         else {
+            return "?";
+         }
+      },
+      //get location
+      getLocation() {
+         if (this.weatherData !== null) {
+            return this.weatherData.data.name;
          }
          else {
             return "";
@@ -106,6 +118,11 @@ export default {
 
    .temperature {
       font-size: 5em;
+   }
+
+   .location {
+      font-size: 2em;
+      text-align: center;
    }
 }
 </style>
