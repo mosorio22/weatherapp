@@ -33,7 +33,7 @@ export default {
       navigator.geolocation.getCurrentPosition(function(position) {
          axios
          .get(that.url + "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + that.appid)
-         .then(response => (that.temp = ((response.data.main.temp - 273.15) * 9/5 + 32 - 60).toFixed(1)))
+         .then(response => (that.temp = ((response.data.main.temp - 273.15) * 9/5 + 32).toFixed(1)))
       });
    }
 }
