@@ -1,5 +1,5 @@
 <template>
-   <div id="main-wrapper" :class="temp > 85 ? 'summer' : temp > 65 ? 'spring' : temp > 35 ? 'fall' : temp > -300 ? 'winter': ''">
+   <div id="main-wrapper" :class="temp > 85 ? 'summer' : temp > 65 ? 'spring' : temp > 35 ? 'fall' : 'winter'">
       <header id="weather-header">
          <h1>Your Weather App</h1>
       </header>
