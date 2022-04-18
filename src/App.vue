@@ -106,8 +106,16 @@ export default {
 }
 
 #weather-header {
-	text-align: center;
-	padding-top: 2%;
+   text-align: center;
+   padding-top: 2%;
+   h1 {
+      background-color: hsla(0, 0%, 100%, 0.5);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      @media (min-width: 600px) {
+         margin-left: 25%;
+         margin-right: 25%;
+      }
+    }
 }
 
 #weather-data {
@@ -115,6 +123,8 @@ export default {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   background-color: hsla(0, 0%, 100%, 0.5);
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
    .temperature {
       font-size: 5em;
