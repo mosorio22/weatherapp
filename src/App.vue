@@ -75,33 +75,21 @@ export default {
       background: url(assets/summerbeach.jpg) no-repeat center center fixed;
       background-size: cover;
       height: 100%;
-      @media (min-width: 768px) {
-         background-size:50%;
-      }
    }
    &.spring {
       background: url(assets/springflowers.jpg) no-repeat center center fixed;
       background-size: cover;
       height: 100%;
-      @media (min-width: 768px) {
-         background-size:50%;
-      }
    }
    &.fall {
       background: url(assets/fallleaves.jpg) no-repeat center center fixed;
       background-size: cover;
       height: 100%;
-      @media (min-width: 768px) {
-         background-size:50%;
-      }
    }
    &.winter {
       background: url(assets/wintersnow.jpg) no-repeat center center fixed;
       background-size: cover;
       height: 100%;
-      @media (min-width: 768px) {
-         background-size:50%;
-      }
    }
 }
 
