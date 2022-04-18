@@ -5,8 +5,11 @@
       </header>
       <div id="weather-data">
          <strong class="temperature">
-            {{  getTemp  }}&#176;
+            {{  getTemp  }}&#176;F
          </strong>
+         <p class="weather-description">
+            {{  getWeatherDescription  }}
+         </p>
          <p class="location">
             {{  getLocation  }}
          </p>
@@ -41,6 +44,15 @@ export default {
       getLocation() {
          if (this.weatherData !== null) {
             return this.weatherData.data.name;
+         }
+         else {
+            return "";
+         }
+      },
+      //get weather description
+      getWeatherDescription() {
+         if (this.weatherData !== null) {
+            return this.weatherData.data.weather[0].description;
          }
          else {
             return "";
@@ -111,6 +123,12 @@ export default {
    .location {
       font-size: 2em;
       text-align: center;
+   }
+
+   .weather-description {
+      font-size: 2em;
+      text-align: center;
+      font-weight: bold;
    }
 }
 </style>
